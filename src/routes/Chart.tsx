@@ -39,7 +39,7 @@ function Chart({ coinId }: ChartProps) {
               height: 300,
               width: 500,
               toolbar: {
-                show: false,
+                show: true,
               },
               background: "transparent",
             },
@@ -53,11 +53,21 @@ function Chart({ coinId }: ChartProps) {
               show: false,
             },
             xaxis: {
-              axisTicks: {
-                show: false,
-              },
-              labels: {
-                show: false,
+              axisBorder: { show: false },
+              axisTicks: { show: false },
+              labels: { show: false },
+
+              categories:
+                data?.map((price) => new Date(price.time_close * 1000)) || [],
+            },
+            fill: {
+              type: "gradient",
+              gradient: { gradientToColors: ["#0be881"], stops: [0, 100] },
+            },
+            colors: ["#0fbcf9"],
+            tooltip: {
+              y: {
+                formatter: (value) => `$${value.toFixed(2)}`,
               },
             },
           }}
